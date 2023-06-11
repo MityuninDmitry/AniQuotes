@@ -6,14 +6,23 @@
 //
 
 import SwiftUI
+import AnimeQuotesNetwork
 
 struct ContentView: View {
+    @StateObject var quotes: Quotes = .init()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            List(quotes.quotes, id: \.self) { quote in
+                QuoteView(quote: quote)
+            }
+            .listStyle(.plain)
+            
+            Button {
+                //quotes.random()
+                quotes.randomQuote()
+            } label: {
+                Text("Print random quotes")
+            }
         }
         .padding()
     }
