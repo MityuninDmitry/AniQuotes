@@ -12,6 +12,8 @@ struct AniQuotesApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(QuoteManager.shared)
+                .environmentObject(TabManager.shared)
         }
     }
 }

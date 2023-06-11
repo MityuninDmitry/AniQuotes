@@ -17,7 +17,7 @@ public struct Quote: Codable, JSONEncodable, Hashable {
     public var character: String
     public var quote: String
     public var v: Double
-
+    
     public init(key: Double, anime: String, character: String, quote: String, v: Double) {
         self.key = key
         self.anime = anime

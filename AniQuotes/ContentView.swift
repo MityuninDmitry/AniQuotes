@@ -9,19 +9,23 @@ import SwiftUI
 import AnimeQuotesNetwork
 
 struct ContentView: View {
-    @StateObject var quotes: Quotes = .init()
+    @EnvironmentObject var quoteManager: QuoteManager
+    @EnvironmentObject var tabManager: TabManager
+    
     var body: some View {
         VStack {
-            List(quotes.quotes, id: \.self) { quote in
-                QuoteView(quote: quote)
-            }
-            .listStyle(.plain)
-            
-            Button {
-                //quotes.random()
-                quotes.randomQuote()
-            } label: {
-                Text("Print random quotes")
+            TabView(selection: $tabManager.seletedTabId) {
+                SearchQuoteScreen()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                    .tag(0)
+                
+                FavoriteQuotesScreen()
+                    .tabItem {
+                        Label("Favorites", systemImage: "star")
+                    }
+                    .tag(1)
             }
         }
         .padding()
@@ -31,5 +35,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(QuoteManager.shared)
+            .environmentObject(TabManager.shared)
     }
 }
