@@ -9,24 +9,53 @@ import SwiftUI
 
 struct SearchQuoteScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
+    @State var isFirstAppear: Bool = true
+    @State var quoteID = UUID()
     var body: some View {
-        VStack {
-            Spacer()
-            
-            if quoteManager.quotes.count > 0 {
-                QuoteView(quote: quoteManager.quotes.last!)
+        ZStack {
+            VStack {
+                if quoteManager.currentQuote != nil {
+                    QuoteView(
+                        quote: quoteManager.currentQuote!
+                    )
+                    .id(quoteID)
+                    .transition(.moveLeading)
+                    .onChange(of: quoteManager.currentQuote?.id) { newValue in
+                        print("new currentQuoteID is \(newValue)")
+                        withAnimation {
+                            quoteID = UUID()
+                        }
+                        
+                    }
+                } else {
+                    ProgressView()
+                }
+                    
             }
             
-            Spacer()
-            
-            Button {
-                quoteManager.randomQuote()
-            } label: {
-                Text("Print random quotes")
+            HStack {
+                VerticalButtonView(width: 70) {
+                    self.quoteManager.previousCurrentQuoteIndex()
+                }
+                
+                Spacer()
+                
+                VerticalButtonView(width: 70) {
+                    self.quoteManager.nextQuote()
+                }
+                
+                
             }
         }
-        .padding()
+        .onAppear {
+            if isFirstAppear {
+                self.quoteManager.nextQuote()
+                isFirstAppear = false
+            }
+        }
+        
     }
+    
 }
 
 struct SearchQuoteScreen_Previews: PreviewProvider {

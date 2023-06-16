@@ -13,22 +13,23 @@ struct ContentView: View {
     @EnvironmentObject var tabManager: TabManager
     
     var body: some View {
-        VStack {
-            TabView(selection: $tabManager.seletedTabId) {
-                SearchQuoteScreen()
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-                    .tag(0)
+        
+        TabView(selection: $tabManager.seletedTabId) {
+            SearchQuoteScreen()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+                .tag(0)
                 
-                FavoriteQuotesScreen()
-                    .tabItem {
-                        Label("Favorites", systemImage: "star")
-                    }
-                    .tag(1)
-            }
+            
+            FavoriteQuotesScreen()
+                .tabItem {
+                    Label("Favorites", systemImage: "star")
+                }
+                .tag(1)
         }
-        .padding()
+        
+        
     }
 }
 

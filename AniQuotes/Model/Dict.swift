@@ -22,6 +22,13 @@ struct Dict {
             character: "Klein",
             quote: "Just consider hardships as another part of training and keep working hard.",
             v: 0
+        ),
+        Quote(
+            key: 432,
+            anime: "Sword Online",
+            character: "Klein234234",
+            quote: "Just  of training and keep working hard.",
+            v: 0
         )
         
     ]

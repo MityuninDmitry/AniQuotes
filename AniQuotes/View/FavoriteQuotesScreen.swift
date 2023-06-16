@@ -10,8 +10,8 @@ import SwiftUI
 struct FavoriteQuotesScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
     var body: some View {
-        List(quoteManager.favoriteQuotes, id: \.key) { quote in
-            Text(quote.character)
+        List(quoteManager.favoriteQuotes, id: \.id) { quote in
+            Text(quote.quote!.character)
         }
         .listStyle(.plain)
     }

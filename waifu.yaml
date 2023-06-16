@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: waifuPicsApi
+  description: |-
+    https://waifu.pics/docs
+    This service return url with image by category and type 
+    You can search anime pics
+  version: 1.0.0
+servers:
+- url: https://api.waifu.pics
+  description: Main server
+tags: 
+- name: waifuPicture
+  description: pics
+paths:
+  /sfw/{swf_category}:
+    get:
+      tags: 
+        - waifuPicture
+      summary: Get waifu image
+      operationId: getImageSource
+      parameters: 
+        - in: path
+          name: swf_category
+          required: true
+          schema: 
+            $ref: '#/components/schemas/swf_category'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+components:
+  schemas:
+    Source: 
+      required: 
+      - "url"
+      properties: 
+        url: 
+          type: "string"
+    swf_category:
+      enum:
+        - waifu
+        - neko
+        - shinobu
+        - megumin
+        - bully
+        - cuddle
+        - cry
+        - hug
+        - awoo
+        - kiss
+        - lick
+        - pat
+        - smug
+        - bonk
+        - yeet
+        - blush
+        - smile
+        - wave
+        - highfive
+        - handhold
+        - nom
+        - bite
+        - glomp
+        - slap
+        - kill
+        - kick
+        - happy
+        - wink
+        - poke
+        - dance
+        - cringe
+      type: string
+    ErrorModel:
+      required: 
+        - "message"
+      properties: 
+        message: 
+          type: "string"
+          

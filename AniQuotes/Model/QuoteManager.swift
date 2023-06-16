@@ -7,56 +7,73 @@
 
 import Foundation
 import AnimeQuotesNetwork
+import WaifuPicsNetwork
 
 class QuoteManager: ObservableObject {
     static var shared = QuoteManager()
     
-    @Published var quotes: [Quote] = []
-    @Published var favoriteQuotes: [Quote] = []
+    
+    @Published var currentQuote: QuoteWrapper?
+    var currentQuoteIndex: Int?
+    {
+        didSet {
+            if currentQuoteIndex != nil {
+                currentQuote = quotes[currentQuoteIndex!]
+            }
+            
+        }
+    }
+    @Published var quotes: [QuoteWrapper] = []
+    @Published var favoriteQuotes: [QuoteWrapper] = []
+    
     
     private init() {
         quotes = .init()
         favoriteQuotes = .init()
+        currentQuoteIndex = nil
     }
-    
-    func randomQuote() {
-        var isDevelopment = true
-        if isDevelopment {
-            self.quotes.append(
-                Dict.quotes[Int.random(in: 0..<Dict.quotes.count)]
-            )
-        } else {
-            AnimeQuotesAPI.randomQuote { data, error in
-                if error != nil {
-                    self.quotes.append(
-                        Quote(
-                            key: Double(self.quotes.count + 1),
-                            anime: "One Piece",
-                            character: "Nami",
-                            quote: error!.localizedDescription,
-                            v: 0.1)
-                    )
-                    return
-                }
-                if let safeData = data {
-                    self.clearQuotes()
-                    self.quotes.append(safeData)
-                }
+    func nextQuote() {
+        if currentQuoteIndex == nil {
+            uploadQuote()
+        }
+        else {
+            if currentQuoteIndex! == self.quotes.count - 1 {
+                uploadQuote()
+            } else {
+                nextCurrentQuoteIndex()
             }
         }
-        
+    }
+    func uploadQuote() {
+        let quoteWrapper: QuoteWrapper = .init(id: 0.0, action: self.nextCurrentQuoteIndex)
+        quoteWrapper.randomQuote()
+        quotes.append(quoteWrapper)
+    }
+    func previousCurrentQuoteIndex() {
+        if currentQuoteIndex != nil {
+            if currentQuoteIndex! != 0 {
+                currentQuoteIndex! -= 1
+            }
+        }
     }
     
-    func appendToFavoriteQuotes(quote: Quote) {
+    func nextCurrentQuoteIndex() {
+        if self.currentQuoteIndex == nil {
+            self.currentQuoteIndex = 0
+        } else {
+            self.currentQuoteIndex! += 1
+        }
+    }
+    func appendToFavoriteQuotes(quote: QuoteWrapper) {
         self.favoriteQuotes.append(quote)
     }
     
-    func removeFavorite(quote: Quote) {
+    func removeFavorite(quote: QuoteWrapper) {
         var index = 0
         var isFound = false
         for favoriteQuote in favoriteQuotes {
             
-            if quote.key == favoriteQuote.key {
+            if quote.quote!.key == favoriteQuote.quote!.key {
                 isFound = true
                 break
             }
@@ -69,9 +86,9 @@ class QuoteManager: ObservableObject {
         
     }
     
-    func isFavorite(quote: Quote) -> Bool {
+    func isFavorite(quote: QuoteWrapper) -> Bool {
         for favoriteQuote in favoriteQuotes {
-            if favoriteQuote.key == quote.key {
+            if favoriteQuote.quote!.key == quote.quote!.key {
                 return true
             }
         }
