@@ -23,6 +23,8 @@ class QuoteWrapper: ObservableObject {
     }
     var imageURL: String? = nil
     var image: UIImage?
+    var isUploadedFully: Bool = false
+    var imageCategory: SwfCategory = .neko
     
     init(id: Double, quote: Quote? = nil, imageURL: String? = nil, action: @escaping () -> Void) {
         self.id = id
@@ -34,16 +36,12 @@ class QuoteWrapper: ObservableObject {
     func runAction() {
         if quote != nil && image != nil {
             action()
+            self.isUploadedFully = true
         }
         
     }
     func searchNextImageUrl() {
-        var category: SwfCategory = .waifu
-        let randomizer = Int.random(in: 0...1)
-        if randomizer == 1 {
-            category = .neko
-        }
-        WaifuPictureAPI.getImageSource(swfCategory: category) { data, error in
+        WaifuPictureAPI.getImageSource(swfCategory: imageCategory) { data, error in
             if error != nil {
                 self.imageURL = "https://i.waifu.pics/HlZeFoe.png"
                 self.load(url: URL(string: self.imageURL!)!)

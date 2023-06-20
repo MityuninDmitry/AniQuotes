@@ -6,27 +6,31 @@
 //
 
 import SwiftUI
+import WaifuPicsNetwork
 
 struct SearchQuoteScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
     @State var isFirstAppear: Bool = true
-    @State var quoteID = UUID()
+    @State var canUploadNextQuote: Bool = true
+    @State var selectedImageCategory: SwfCategory = .neko
+    
     var body: some View {
         ZStack {
+            
+            
             VStack {
                 if quoteManager.currentQuote != nil {
-                    QuoteView(
-                        quote: quoteManager.currentQuote!
-                    )
-                    .id(quoteID)
-                    .transition(.moveLeading)
-                    .onChange(of: quoteManager.currentQuote?.id) { newValue in
-                        print("new currentQuoteID is \(newValue)")
-                        withAnimation {
-                            quoteID = UUID()
+                    VStack {
+                        QuoteView(
+                            quote: quoteManager.currentQuote!
+                        )
+                        .onChange(of: quoteManager.currentQuoteIndex!) { newValue in
+                                canUploadNextQuote = true
                         }
                         
+                        CategoryPickerView(selectedImageCategory: $selectedImageCategory)
                     }
+                    
                 } else {
                     ProgressView()
                 }
@@ -40,16 +44,29 @@ struct SearchQuoteScreen: View {
                 
                 Spacer()
                 
-                VerticalButtonView(width: 70) {
-                    self.quoteManager.nextQuote()
+                if canUploadNextQuote {
+                    VerticalButtonView(width: 70) {
+                        self.quoteManager.nextQuote(imageCategory: self.selectedImageCategory)
+                        
+                        canUploadNextQuote = false
+                        
+                    }
                 }
                 
-                
+            }
+            
+            VStack {
+                if !canUploadNextQuote {
+                    ProgressView()
+                        .scaleEffect(2)
+                        .colorInvert()
+                        .shadow(radius: 5)
+                }
             }
         }
         .onAppear {
             if isFirstAppear {
-                self.quoteManager.nextQuote()
+                self.quoteManager.nextQuote(imageCategory: selectedImageCategory)
                 isFirstAppear = false
             }
         }

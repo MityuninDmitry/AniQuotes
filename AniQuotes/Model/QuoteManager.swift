@@ -18,7 +18,11 @@ class QuoteManager: ObservableObject {
     {
         didSet {
             if currentQuoteIndex != nil {
-                currentQuote = quotes[currentQuoteIndex!]
+                
+                if currentQuoteIndex! <= quotes.count - 1 {
+                    currentQuote = quotes[currentQuoteIndex!]
+                }
+                
             }
             
         }
@@ -32,20 +36,21 @@ class QuoteManager: ObservableObject {
         favoriteQuotes = .init()
         currentQuoteIndex = nil
     }
-    func nextQuote() {
+    func nextQuote(imageCategory: SwfCategory) {
         if currentQuoteIndex == nil {
-            uploadQuote()
+            uploadQuote(imageCategory: imageCategory)
         }
         else {
             if currentQuoteIndex! == self.quotes.count - 1 {
-                uploadQuote()
+                uploadQuote(imageCategory: imageCategory)
             } else {
                 nextCurrentQuoteIndex()
             }
         }
     }
-    func uploadQuote() {
+    func uploadQuote(imageCategory: SwfCategory) {
         let quoteWrapper: QuoteWrapper = .init(id: 0.0, action: self.nextCurrentQuoteIndex)
+        quoteWrapper.imageCategory = imageCategory
         quoteWrapper.randomQuote()
         quotes.append(quoteWrapper)
     }

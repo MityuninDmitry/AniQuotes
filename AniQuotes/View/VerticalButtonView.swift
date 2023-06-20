@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WaifuPicsNetwork
 
 struct VerticalButtonView: View {
     @State var isTapped: Bool = false
@@ -33,7 +34,7 @@ struct VerticalButtonView_Previews: PreviewProvider {
     static var previews: some View {
         VerticalButtonView(
             width: 50,
-            action: QuoteManager.shared.nextQuote)
+            action: {})
             .environmentObject(QuoteManager.shared)
     }
 }

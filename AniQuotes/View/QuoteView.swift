@@ -11,82 +11,38 @@ import AnimeQuotesNetwork
 struct QuoteView: View {
     @EnvironmentObject var quoteManager: QuoteManager
     var quote: QuoteWrapper
+    @State var isFavorite: Bool = false
     
     var body: some View {
-        ZStack {
-            if quote.image != nil {
-                GeometryReader { reader in
-                    Image(uiImage: quote.image!)
-                        .resizable()
-                        .scaledToFill()
-                        .edgesIgnoringSafeArea(.top)
-                        .frame(width: reader.size.width, alignment: .center)
+        if quote.isUploadedFully {
+            ZStack {
+                QuoteImageView(quote: self.quote)
+                
+                VStack {
+                    Spacer()
+                    QuoteTextView(quote: self.quote)
                 }
                 
+                FavoriteView(quote: quote, isFavorite: $isFavorite)
+ 
             }
-            
-            
-            
-            VStack {
-                Spacer()
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 40)
-                        .opacity(0.5)
-                    
-                    VStack(alignment: .leading) {
-                        
-                        Text(quote.quote!.quote)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        HStack {
-                            Spacer()
-                            Text(quote.quote!.character)
-                        }
-                        
-                        
-                        HStack {
-                            Spacer()
-                            Text(quote.quote!.anime)
-                        }
-                        
-                        
-                        HStack {
-                            Spacer()
-                            
-                            if quoteManager.isFavorite(quote: self.quote) {
-                                Button {
-                                    quoteManager.removeFavorite(quote: self.quote)
-                                } label: {
-                                    Image.init(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                        .font(.system(size: 25))
-                                }
-                                
-                            } else {
-                                Button {
-                                    quoteManager.appendToFavoriteQuotes(quote: self.quote)
-                                } label: {
-                                    Image.init(systemName: "star")
-                                        .foregroundColor(.black)
-                                        .font(.system(size: 25))
-                                }
-                            }
-                            
-                            
-                        }
-                    }
-                    .padding(.horizontal, 50)
-                    
+            .onTapGesture(count: 2) {
+                self.isFavorite = quoteManager.isFavorite(quote: self.quote)
+                if isFavorite {
+                    quoteManager.removeFavorite(quote: self.quote)
+                } else {
+                    quoteManager.appendToFavoriteQuotes(quote: self.quote)
                 }
-                .scaledToFit()
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isFavorite.toggle()
+                }
+                
+                
             }
-            
-            
-            
-            
+        } else {
+            ProgressView()
         }
+        
         
     }
 }
