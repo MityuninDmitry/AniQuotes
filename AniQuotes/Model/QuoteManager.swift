@@ -12,73 +12,69 @@ import WaifuPicsNetwork
 class QuoteManager: ObservableObject {
     static var shared = QuoteManager()
     
-    
-    @Published var currentQuote: QuoteWrapper?
-    var currentQuoteIndex: Int?
-    {
+    @Published var quotes: [QuoteViewModel] = []
+    @Published var favoriteQuotes: [QuoteViewModel] = []
+    @Published var isLoading: Bool = false
+    @Published var animeTitle: AnimeTitle = .Naruto {
         didSet {
-            if currentQuoteIndex != nil {
-                
-                if currentQuoteIndex! <= quotes.count - 1 {
-                    currentQuote = quotes[currentQuoteIndex!]
-                }
-                
-            }
-            
+            page = 1
+            quotes = .init()
+            isLoadedFully = false
+            fetch()
         }
     }
-    @Published var quotes: [QuoteWrapper] = []
-    @Published var favoriteQuotes: [QuoteWrapper] = []
+    @Published var isLoadedFully = false
+    private var page: Int = 1
     
     
     private init() {
         quotes = .init()
         favoriteQuotes = .init()
-        currentQuoteIndex = nil
+        
     }
-    func nextQuote(imageCategory: SwfCategory) {
-        if currentQuoteIndex == nil {
-            uploadQuote(imageCategory: imageCategory)
+    func fetch() {
+        
+        if self.isLoadedFully { // если загружен список полностью, то выходи
+            return
         }
-        else {
-            if currentQuoteIndex! == self.quotes.count - 1 {
-                uploadQuote(imageCategory: imageCategory)
+        self.isLoading = true // ставим, что в процессе загрузки
+//        AnimeQuotesAPI.animeArray { data, error in
+//            print(data)
+//        }
+        // вытягиваем список цитат
+        AnimeQuotesAPI.randomQuotesByAnime(title: self.animeTitle.rawValue, page: page, completion: { [self] data, error in
+            if error == nil {
+                if data != nil {
+                    self.quotes.append(contentsOf: data!.map({ quote in
+                        return QuoteViewModel(quote: quote)
+                    }))
+                    self.page += 1
+                    self.isLoading = false
+                }
             } else {
-                nextCurrentQuoteIndex()
+                self.quotes.append(contentsOf: Dict.quotes.map({ quote in
+                    return QuoteViewModel(quote: quote)
+                }))
+                self.isLoading = false
+                self.isLoadedFully = true
+                
+                print(error!)
             }
-        }
-    }
-    func uploadQuote(imageCategory: SwfCategory) {
-        let quoteWrapper: QuoteWrapper = .init(id: 0.0, action: self.nextCurrentQuoteIndex)
-        quoteWrapper.imageCategory = imageCategory
-        quoteWrapper.randomQuote()
-        quotes.append(quoteWrapper)
-    }
-    func previousCurrentQuoteIndex() {
-        if currentQuoteIndex != nil {
-            if currentQuoteIndex! != 0 {
-                currentQuoteIndex! -= 1
-            }
-        }
+            
+        })
     }
     
-    func nextCurrentQuoteIndex() {
-        if self.currentQuoteIndex == nil {
-            self.currentQuoteIndex = 0
-        } else {
-            self.currentQuoteIndex! += 1
-        }
-    }
-    func appendToFavoriteQuotes(quote: QuoteWrapper) {
+    
+    func appendToFavoriteQuotes(quote: QuoteViewModel) {
         self.favoriteQuotes.append(quote)
     }
     
-    func removeFavorite(quote: QuoteWrapper) {
+    func removeFavorite(quote: QuoteViewModel) {
         var index = 0
         var isFound = false
         for favoriteQuote in favoriteQuotes {
             
-            if quote.quote!.key == favoriteQuote.quote!.key {
+            if quote.id == favoriteQuote.id {
                 isFound = true
                 break
             }
@@ -89,15 +85,6 @@ class QuoteManager: ObservableObject {
             self.favoriteQuotes.remove(at: index)
         }
         
-    }
-    
-    func isFavorite(quote: QuoteWrapper) -> Bool {
-        for favoriteQuote in favoriteQuotes {
-            if favoriteQuote.quote!.key == quote.quote!.key {
-                return true
-            }
-        }
-        return false
     }
     
     func clearQuotes() {

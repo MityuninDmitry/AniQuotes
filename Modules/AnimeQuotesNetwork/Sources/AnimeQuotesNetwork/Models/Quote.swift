@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 public struct Quote: Codable, JSONEncodable, Hashable {
-
+    
     public var key: Double
     public var anime: String
     public var character: String

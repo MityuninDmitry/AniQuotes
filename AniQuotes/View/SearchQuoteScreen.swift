@@ -7,70 +7,46 @@
 
 import SwiftUI
 import WaifuPicsNetwork
+import NavigationStackCustom
 
 struct SearchQuoteScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
     @State var isFirstAppear: Bool = true
-    @State var canUploadNextQuote: Bool = true
-    @State var selectedImageCategory: SwfCategory = .neko
-    
     var body: some View {
-        ZStack {
-            
-            
+        AppNavigationView {
             VStack {
-                if quoteManager.currentQuote != nil {
-                    VStack {
-                        QuoteView(
-                            quote: quoteManager.currentQuote!
-                        )
-                        .onChange(of: quoteManager.currentQuoteIndex!) { newValue in
-                                canUploadNextQuote = true
+                List {
+                    ForEach(Array(quoteManager.quotes.enumerated()) , id: \.element) { index, quote in
+                        AppNavigationViewNext(destination: QuoteView().environmentObject(quote)) {
+                            Text("\(index). \(quote.quote.anime) | \(quote.quote.character)")
+                                .onAppear {
+                                    if quoteManager.quotes.isLastItem(quote) {
+                                        quoteManager.fetch()
+                                    }
+                                }
                         }
                         
-                        CategoryPickerView(selectedImageCategory: $selectedImageCategory)
                     }
-                    
-                } else {
-                    ProgressView()
                 }
-                    
-            }
-            
-            HStack {
-                VerticalButtonView(width: 70) {
-                    self.quoteManager.previousCurrentQuoteIndex()
+                .listStyle(.plain)
+                .onAppear {
+                    if self.isFirstAppear {
+                        quoteManager.fetch()
+                        self.isFirstAppear = false
+                    }
                 }
                 
                 Spacer()
                 
-                if canUploadNextQuote {
-                    VerticalButtonView(width: 70) {
-                        self.quoteManager.nextQuote(imageCategory: self.selectedImageCategory)
-                        
-                        canUploadNextQuote = false
-                        
-                    }
+                if quoteManager.isLoadedFully {
+                    Text("You uploaded everything!")
                 }
                 
-            }
-            
-            VStack {
-                if !canUploadNextQuote {
-                    ProgressView()
-                        .scaleEffect(2)
-                        .colorInvert()
-                        .shadow(radius: 5)
-                }
+                AnimePickerView()
+                    .environmentObject(quoteManager)
+                
             }
         }
-        .onAppear {
-            if isFirstAppear {
-                self.quoteManager.nextQuote(imageCategory: selectedImageCategory)
-                isFirstAppear = false
-            }
-        }
-        
     }
     
 }

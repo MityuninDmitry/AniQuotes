@@ -9,8 +9,7 @@ import SwiftUI
 import AnimeQuotesNetwork
 
 struct QuoteTextView: View {
-    @EnvironmentObject var quoteManager: QuoteManager
-    var quote: QuoteWrapper
+    @EnvironmentObject var quote: QuoteViewModel
     
     var body: some View {
         ZStack {
@@ -21,18 +20,18 @@ struct QuoteTextView: View {
             
             VStack(alignment: .leading) {
                 
-                Text(quote.quote!.quote)
+                Text(quote.quote.quote)
                     .fixedSize(horizontal: false, vertical: true)
                 
                 HStack {
                     Spacer()
-                    Text(quote.quote!.character)
+                    Text(quote.quote.character)
                 }
                 
                 
                 HStack {
                     Spacer()
-                    Text(quote.quote!.anime)
+                    Text(quote.quote.anime)
                 }
             }
             .padding(.horizontal, 50)
@@ -45,16 +44,7 @@ struct QuoteTextView: View {
 
 struct QuoteTextView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteTextView(
-            quote: QuoteWrapper(
-                id: 0,
-                quote: Quote(
-                    key: 1,
-                    anime: "NameANIME",
-                    character: "Saitama",
-                    quote: "Something sdasd,mansd,n sdfk sjd,f s,dmfn s,dfn s,mdfn,smdnf ,smdnf ,msdn f,msdnf ,msndf,msnd,fmn ", v: 1.1),
-                imageURL: "https://i.waifu.pics/RBGn36s.jpeg",
-                action: {print("hello")}))
+        QuoteTextView()
         .environmentObject(QuoteManager.shared)
     }
 }
