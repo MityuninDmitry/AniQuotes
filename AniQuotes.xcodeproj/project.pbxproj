@@ -27,7 +27,6 @@
 		15DF323D2A35DCD20004A114 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF323C2A35DCD20004A114 /* QuoteView.swift */; };
 		15E22E722A44B91F008347B9 /* RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E22E712A44B91F008347B9 /* RandomAccessCollection.swift */; };
 		15E22E752A44BE57008347B9 /* AnimeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E22E742A44BE57008347B9 /* AnimeTitle.swift */; };
-		15E22E772A44C14A008347B9 /* AnimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E22E762A44C14A008347B9 /* AnimePickerView.swift */; };
 		15F06BAB2A34D88B00A153E4 /* AniQuotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F06BAA2A34D88B00A153E4 /* AniQuotesApp.swift */; };
 		15F06BAD2A34D88B00A153E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F06BAC2A34D88B00A153E4 /* ContentView.swift */; };
 		15F06BAF2A34D88E00A153E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15F06BAE2A34D88E00A153E4 /* Assets.xcassets */; };
@@ -58,7 +57,6 @@
 		15DF323C2A35DCD20004A114 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		15E22E712A44B91F008347B9 /* RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAccessCollection.swift; sourceTree = "<group>"; };
 		15E22E742A44BE57008347B9 /* AnimeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeTitle.swift; sourceTree = "<group>"; };
-		15E22E762A44C14A008347B9 /* AnimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimePickerView.swift; sourceTree = "<group>"; };
 		15F06BA72A34D88B00A153E4 /* AniQuotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AniQuotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F06BAA2A34D88B00A153E4 /* AniQuotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniQuotesApp.swift; sourceTree = "<group>"; };
 		15F06BAC2A34D88B00A153E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				150ED6DF2A421B9F00E98B56 /* ImageView.swift */,
 				150ED6DD2A421A6D00E98B56 /* TextView.swift */,
 				150ED6E12A421CD800E98B56 /* CategoryPickerView.swift */,
-				15E22E762A44C14A008347B9 /* AnimePickerView.swift */,
 				155561AD2A365101006B0F0E /* SearchQuoteScreen.swift */,
 				155561AF2A3651A5006B0F0E /* FavoriteQuotesScreen.swift */,
 				15C553972A378F87001CC1E2 /* VerticalButtonView.swift */,
@@ -270,7 +267,6 @@
 				15F220392A3B910A00463383 /* AnyTransition.swift in Sources */,
 				157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */,
 				1502C5712A45E8B80082613D /* QuoteListView.swift in Sources */,
-				15E22E772A44C14A008347B9 /* AnimePickerView.swift in Sources */,
 				150ED6DE2A421A6D00E98B56 /* TextView.swift in Sources */,
 				155561AE2A365101006B0F0E /* SearchQuoteScreen.swift in Sources */,
 				155561B02A3651A5006B0F0E /* FavoriteQuotesScreen.swift in Sources */,

@@ -12,10 +12,10 @@ import NavigationStackCustom
 struct SearchQuoteScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
     @State var isFirstAppear: Bool = true
-    @State var selectedCategory: String? = nil {
+    @State var textForSearching: String? = nil {
         didSet {
-            if selectedCategory != nil {
-                quoteManager.textForSearching = selectedCategory
+            if textForSearching != nil {
+                quoteManager.textForSearching = textForSearching
             }
             
         }
@@ -29,7 +29,7 @@ struct SearchQuoteScreen: View {
                             Text("\(index). \(item)")
                         } actionOnTap: {
                             //self.quoteManager.animeTitle = item // так выдает ошибку xCode
-                            self.selectedCategory = item
+                            self.textForSearching = item
                         }
                         
                         

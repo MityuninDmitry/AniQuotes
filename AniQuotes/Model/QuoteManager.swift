@@ -24,21 +24,17 @@ class QuoteManager: ObservableObject {
     @Published var categories: [String] = []
     @Published var textForSearching: String?  {
         didSet {
-            if textForSearching != nil {
-                page = 1
-                quotes = .init()
-                isLoadedFully = false
-                
-                switch searchType {
-                case .AnimeTitle:
-                    fetchQuotesByAnimeTitle()
-                case .CharacterName:
-                    fetchQuotesByCharacterName()
+            if oldValue != textForSearching {
+                if textForSearching != nil {
+                    page = 1
+                    quotes = .init()
+                    isLoadedFully = false
+                    fetchQuotes()
+                } else {
+                    fetchCategories()
                 }
-                
-            } else {
-                fetchCategories()
             }
+            
             
         }
     }
@@ -46,13 +42,21 @@ class QuoteManager: ObservableObject {
     
     private var page: Int = 1
     
-    
     private init() {
         quotes = .init()
         favoriteQuotes = .init()
         
     }
+    func fetchQuotes() {
+        switch searchType {
+        case .AnimeTitle:
+            fetchQuotesByAnimeTitle()
+        case .CharacterName:
+            fetchQuotesByCharacterName()
+        }
+    }
     func fetchCategories() {
+        print("fetchCategories")
         switch searchType {
         case .AnimeTitle:
             fetchAnimeTitles()

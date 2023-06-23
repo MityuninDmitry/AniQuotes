@@ -19,7 +19,7 @@ struct QuoteListView: View {
                     }
                     .onAppear {
                         if self.quoteManager.quotes.isLastItem(item) {
-                            self.quoteManager.fetchQuotesByAnimeTitle()
+                            self.quoteManager.fetchQuotes()
                         }
                     }
                     

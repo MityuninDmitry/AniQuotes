@@ -29,6 +29,7 @@ struct CategoryPickerView: View {
                 UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
         }
         .shadow(radius: 3)
+        .frame(height: 50)
     }
 }
 
