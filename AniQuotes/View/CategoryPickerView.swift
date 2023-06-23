@@ -9,15 +9,19 @@ import SwiftUI
 import WaifuPicsNetwork
 
 struct CategoryPickerView: View {
-    @Binding var selectedImageCategory: SwfCategory
-    var imageCategories: [SwfCategory] = [.neko,.waifu,.awoo]
+    @EnvironmentObject var quoteManager: QuoteManager
+    @State var selectedSearchType: SearchType = QuoteManager.shared.searchType
+    private var searchTypes: [SearchType] = [.AnimeTitle, .CharacterName]
      
     var body: some View {
-        Picker("Choose image category", selection: $selectedImageCategory) {
-            ForEach(imageCategories, id: \.self) { category in
+        Picker("Choose image category", selection: $selectedSearchType) {
+            ForEach(searchTypes, id: \.self) { category in
                 Text("\(category.rawValue)")
             }
         }
+        .onChange(of: selectedSearchType, perform: { newValue in
+            quoteManager.searchType = newValue
+        })
         .pickerStyle(.segmented)
         .onAppear {
             UISegmentedControl.appearance().backgroundColor = .systemIndigo
@@ -30,6 +34,7 @@ struct CategoryPickerView: View {
 
 struct CategoryPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryPickerView(selectedImageCategory: .constant(.neko))
+        CategoryPickerView()
+            .environmentObject(QuoteManager.shared)
     }
 }

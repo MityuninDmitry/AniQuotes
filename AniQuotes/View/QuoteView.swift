@@ -12,28 +12,18 @@ struct QuoteView: View {
     @EnvironmentObject var quote: QuoteViewModel
     
     var body: some View {
-        QuoteTextView()
-            .environmentObject(quote)
-//        if quote.isUploadedFully {
-//            ZStack {
-//                QuoteImageView()
-//                    .environmentObject(quote)
-//
-//                VStack {
-//                    Spacer()
-//                    QuoteTextView()
-//                        .environmentObject(quote)
-//                }
-//
-//                FavoriteView(quote: quote, isFavorite: $isFavorite)
-//
-//            }
-//
-//        } else {
-//            ProgressView()
-//        }
-//
-        
+        ZStack {
+            ImageView()
+                .environmentObject(quote)
+            VStack {
+                Spacer()
+                
+                TextView()
+                    .environmentObject(quote)
+                    .padding(.horizontal, 10)
+                NavigationButtonsView()
+            }
+        }
     }
 }
 

@@ -9,18 +9,18 @@ import SwiftUI
 
 struct AnimePickerView: View {
     @EnvironmentObject var quoteManager: QuoteManager
-    var animeTitles: [AnimeTitle] =  [.Naruto, .Ippo]
-    @State var selectedAnimeTitle: AnimeTitle = .Naruto 
+    var animeTitles: [String] =  ["", ""]
+    @State var selectedAnimeTitle: String = "Naruto"
     
     var body: some View {
         Picker("Choose image category", selection: $selectedAnimeTitle) {
             ForEach(animeTitles, id: \.self) { anime in
-                Text("\(anime.rawValue)")
+                Text("\(anime)")
             }
         }
         .pickerStyle(.segmented)
         .onChange(of: selectedAnimeTitle, perform: { newValue in
-            quoteManager.animeTitle = newValue
+            quoteManager.textForSearching = newValue
         })
         .onAppear {
             UISegmentedControl.appearance().backgroundColor = .systemIndigo

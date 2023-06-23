@@ -12,41 +12,47 @@ import NavigationStackCustom
 struct SearchQuoteScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
     @State var isFirstAppear: Bool = true
+    @State var selectedCategory: String? = nil {
+        didSet {
+            if selectedCategory != nil {
+                quoteManager.textForSearching = selectedCategory
+            }
+            
+        }
+    }
     var body: some View {
         AppNavigationView {
             VStack {
                 List {
-                    ForEach(Array(quoteManager.quotes.enumerated()) , id: \.element) { index, quote in
-                        AppNavigationViewNext(destination: QuoteView().environmentObject(quote)) {
-                            Text("\(index). \(quote.quote.anime) | \(quote.quote.character)")
-                                .onAppear {
-                                    if quoteManager.quotes.isLastItem(quote) {
-                                        quoteManager.fetch()
-                                    }
-                                }
+                    ForEach(Array(quoteManager.categories.enumerated()) , id: \.element) { index, item in
+                        AppNavigationViewNext(destination: QuoteListView().environmentObject(quoteManager)) {
+                            Text("\(index). \(item)")
+                        } actionOnTap: {
+                            //self.quoteManager.animeTitle = item // так выдает ошибку xCode
+                            self.selectedCategory = item
                         }
+                        
+                        
                         
                     }
                 }
                 .listStyle(.plain)
-                .onAppear {
-                    if self.isFirstAppear {
-                        quoteManager.fetch()
-                        self.isFirstAppear = false
-                    }
-                }
+                
                 
                 Spacer()
                 
-                if quoteManager.isLoadedFully {
-                    Text("You uploaded everything!")
-                }
-                
-                AnimePickerView()
+                CategoryPickerView()
                     .environmentObject(quoteManager)
-                
+            }
+            
+        }
+        .onAppear {
+            if quoteManager.categories.isEmpty {
+                quoteManager.fetchCategories()
             }
         }
+        
+        
     }
     
 }
