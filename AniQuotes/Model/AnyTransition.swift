@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension AnyTransition {
-    static var moveLeading: AnyTransition {
-        return AnyTransition.move(edge: .trailing)
+    static var moveBottomScaled: AnyTransition {
+        return AnyTransition.move(edge: .bottom).combined(with: .scale)
     }
 }

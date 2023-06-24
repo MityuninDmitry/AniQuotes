@@ -14,7 +14,7 @@ struct SearchQuoteScreen: View {
     @State var isFirstAppear: Bool = true
     @State var textForSearching: String? = nil {
         didSet {
-            if textForSearching != nil {
+            if textForSearching != nil { 
                 quoteManager.textForSearching = textForSearching
             }
             

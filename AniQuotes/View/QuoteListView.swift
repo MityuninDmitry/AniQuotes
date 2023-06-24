@@ -15,7 +15,9 @@ struct QuoteListView: View {
             List {
                 ForEach(Array(quoteManager.quotes.enumerated()), id: \.element) { index, item in
                     AppNavigationViewNext(destination: QuoteView().environmentObject(item)) {
-                        Text("\(index). \(item.quote.anime) : \(item.quote.character)")
+                        QuoteCellView(index: index)
+                            .environmentObject(quoteManager)
+                            .environmentObject(item)
                     }
                     .onAppear {
                         if self.quoteManager.quotes.isLastItem(item) {

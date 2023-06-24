@@ -16,9 +16,10 @@ class QuoteManager: ObservableObject {
         didSet {
             categories = []
             textForSearching = nil
+            fetchCategories()
         }
     }
-    @Published var quotes: [QuoteViewModel] = []
+    @Published var quotes: [QuoteViewModel] = [] 
     @Published var favoriteQuotes: [QuoteViewModel] = []
     @Published var isLoading: Bool = false
     @Published var categories: [String] = []
@@ -56,7 +57,6 @@ class QuoteManager: ObservableObject {
         }
     }
     func fetchCategories() {
-        print("fetchCategories")
         switch searchType {
         case .AnimeTitle:
             fetchAnimeTitles()
@@ -180,7 +180,14 @@ class QuoteManager: ObservableObject {
         }
         
     }
-    
+    func updateIsFavoriteFor(quote: QuoteViewModel) {
+        for favoriteQuote in favoriteQuotes {
+            if favoriteQuote.quote.key == quote.quote.key && favoriteQuote.isFavorite {
+                quote.isFavorite = true
+                return
+            }
+        }
+    }
     func clearQuotes() {
         self.quotes = []
     }

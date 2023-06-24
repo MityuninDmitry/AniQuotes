@@ -20,9 +20,10 @@
 		155561BA2A36FD27006B0F0E /* generate_waifu.sh in Resources */ = {isa = PBXBuildFile; fileRef = 155561B92A36FD27006B0F0E /* generate_waifu.sh */; };
 		157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157522FF2A35D1BA00AFE38E /* QuoteManager.swift */; };
 		157E57372A3F88FB003BA0C5 /* NavigationStackCustom in Frameworks */ = {isa = PBXBuildFile; productRef = 157E57362A3F88FB003BA0C5 /* NavigationStackCustom */; };
+		15A36C232A46F2BD00E958E9 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A36C222A46F2BD00E958E9 /* HeartView.swift */; };
+		15A36C252A4701E600E958E9 /* QuoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A36C242A4701E600E958E9 /* QuoteCellView.swift */; };
 		15BA224E2A45F18C00647A2E /* NavigationButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BA224D2A45F18C00647A2E /* NavigationButtonsView.swift */; };
 		15BA22502A4600D400647A2E /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BA224F2A4600D400647A2E /* SearchType.swift */; };
-		15C553982A378F87001CC1E2 /* VerticalButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C553972A378F87001CC1E2 /* VerticalButtonView.swift */; };
 		15C788F12A38B01800145F06 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C788F02A38B01800145F06 /* QuoteViewModel.swift */; };
 		15DF323D2A35DCD20004A114 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF323C2A35DCD20004A114 /* QuoteView.swift */; };
 		15E22E722A44B91F008347B9 /* RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E22E712A44B91F008347B9 /* RandomAccessCollection.swift */; };
@@ -50,9 +51,10 @@
 		155561B92A36FD27006B0F0E /* generate_waifu.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_waifu.sh; sourceTree = SOURCE_ROOT; };
 		157522FF2A35D1BA00AFE38E /* QuoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteManager.swift; sourceTree = "<group>"; };
 		157E57352A3F886F003BA0C5 /* NavigationStackCustom */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NavigationStackCustom; path = Modules/NavigationStackCustom; sourceTree = "<group>"; };
+		15A36C222A46F2BD00E958E9 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
+		15A36C242A4701E600E958E9 /* QuoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCellView.swift; sourceTree = "<group>"; };
 		15BA224D2A45F18C00647A2E /* NavigationButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonsView.swift; sourceTree = "<group>"; };
 		15BA224F2A4600D400647A2E /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
-		15C553972A378F87001CC1E2 /* VerticalButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButtonView.swift; sourceTree = "<group>"; };
 		15C788F02A38B01800145F06 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		15DF323C2A35DCD20004A114 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		15E22E712A44B91F008347B9 /* RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAccessCollection.swift; sourceTree = "<group>"; };
@@ -103,14 +105,15 @@
 		15DF323B2A35DCB10004A114 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				15DF323C2A35DCD20004A114 /* QuoteView.swift */,
+				155561AD2A365101006B0F0E /* SearchQuoteScreen.swift */,
+				155561AF2A3651A5006B0F0E /* FavoriteQuotesScreen.swift */,
 				1502C5702A45E8B80082613D /* QuoteListView.swift */,
+				15A36C242A4701E600E958E9 /* QuoteCellView.swift */,
+				15DF323C2A35DCD20004A114 /* QuoteView.swift */,
+				15A36C222A46F2BD00E958E9 /* HeartView.swift */,
 				150ED6DF2A421B9F00E98B56 /* ImageView.swift */,
 				150ED6DD2A421A6D00E98B56 /* TextView.swift */,
 				150ED6E12A421CD800E98B56 /* CategoryPickerView.swift */,
-				155561AD2A365101006B0F0E /* SearchQuoteScreen.swift */,
-				155561AF2A3651A5006B0F0E /* FavoriteQuotesScreen.swift */,
-				15C553972A378F87001CC1E2 /* VerticalButtonView.swift */,
 				15BA224D2A45F18C00647A2E /* NavigationButtonsView.swift */,
 			);
 			path = View;
@@ -260,12 +263,13 @@
 				15BA224E2A45F18C00647A2E /* NavigationButtonsView.swift in Sources */,
 				15F06BAD2A34D88B00A153E4 /* ContentView.swift in Sources */,
 				150ED6E02A421B9F00E98B56 /* ImageView.swift in Sources */,
-				15C553982A378F87001CC1E2 /* VerticalButtonView.swift in Sources */,
 				15E22E722A44B91F008347B9 /* RandomAccessCollection.swift in Sources */,
 				15E22E752A44BE57008347B9 /* AnimeTitle.swift in Sources */,
+				15A36C252A4701E600E958E9 /* QuoteCellView.swift in Sources */,
 				15F06BAB2A34D88B00A153E4 /* AniQuotesApp.swift in Sources */,
 				15F220392A3B910A00463383 /* AnyTransition.swift in Sources */,
 				157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */,
+				15A36C232A46F2BD00E958E9 /* HeartView.swift in Sources */,
 				1502C5712A45E8B80082613D /* QuoteListView.swift in Sources */,
 				150ED6DE2A421A6D00E98B56 /* TextView.swift in Sources */,
 				155561AE2A365101006B0F0E /* SearchQuoteScreen.swift in Sources */,

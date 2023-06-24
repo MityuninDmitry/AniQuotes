@@ -30,7 +30,7 @@ struct TextView: View {
         .cornerRadius(10)
         .padding(.horizontal, 10)
         .background {
-            Color.white.opacity(0.3)
+            Color.white.opacity(0.9)
         }
         .clipShape(RoundedRectangle(cornerRadius: 10))
         

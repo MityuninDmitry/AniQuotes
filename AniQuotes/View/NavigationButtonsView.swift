@@ -11,28 +11,46 @@ import NavigationStackCustom
 struct NavigationButtonsView: View {
     var body: some View {
         HStack {
-            Spacer()
-            AppNavigationViewBack(destination: .previous) {
-                Text("Go back")
-                    .padding(5)
+            HStack {
+                Spacer()
+                AppNavigationViewBack(destination: .previous) {
+                    Text("Go back")
+                }
+                .padding(.vertical, 4)
+                Spacer()
             }
             .background {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(style: .init(lineWidth: 1))
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
             }
-            Spacer()
-            AppNavigationViewBack(destination: .root) {
-                Text("Go root")
-                    .padding(5)
-                
+            
+            .padding(.horizontal, 1)
+            
+            HStack {
+                Spacer()
+                AppNavigationViewBack(destination: .root) {
+                    Text("Go root")
+                }
+                .padding(.vertical, 4)
+                Spacer()
             }
             .background {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(style: .init(lineWidth: 1))
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
             }
-            Spacer()
+            .padding(.horizontal, 1)
+            
         }
-        .padding()
+        .padding(.vertical, 2)
+        .background(.indigo)
+        .clipShape(
+            RoundedRectangle(cornerRadius: 5)
+        )
+        
     }
 }
 

@@ -23,6 +23,7 @@ class QuoteViewModel: ObservableObject, Identifiable, Hashable {
             
         }
     }
+    @Published var isFavorite: Bool = false
     @Published var image: UIImage? {
         didSet {
             print("IMAGE LOADED")

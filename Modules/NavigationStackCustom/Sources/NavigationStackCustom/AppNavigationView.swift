@@ -66,6 +66,7 @@ public struct AppNavigationViewBack<Content>: View where Content: View {
     private let content: Content
     private let destination: BackDestination
     
+    
     public init(destination: BackDestination, @ViewBuilder content: @escaping () -> Content) {
         self.content = content()
         self.destination = destination

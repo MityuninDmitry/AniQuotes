@@ -11,11 +11,14 @@ struct FavoriteQuotesScreen: View {
     @EnvironmentObject var quoteManager: QuoteManager
     
     var body: some View {
-        Text("")
-//        List(quoteManager.favoriteQuotes, id: \.key) { quote in
-//            Text(quote!.character)
-//        }
-//        .listStyle(.plain)
+        VStack {
+            List {
+                ForEach(Array(quoteManager.favoriteQuotes.enumerated()), id:\.element) { index, item in
+                    Text(item.quote.character)
+                }
+            }
+            .listStyle(.plain)
+        }
     }
 }
 
