@@ -62,6 +62,7 @@ public struct AppNavigationViewNext<Content, Destination>: View where Content: V
 
 public struct AppNavigationViewBack<Content>: View where Content: View {
     @EnvironmentObject var viewModel: AppNavigationViewModel
+    @State var isTapped: Bool = false
     
     private let content: Content
     private let destination: BackDestination
@@ -75,8 +76,15 @@ public struct AppNavigationViewBack<Content>: View where Content: View {
     public var body: some View {
         content
         .onTapGesture {
-            pop()
+            withAnimation(.easeInOut(duration: 0.1).repeatCount(2, autoreverses: true)) {
+                isTapped.toggle()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                pop()
+            }
+            
         }
+        .scaleEffect(isTapped ? 0.96 : 1)
     }
     
     private func pop() {

@@ -18,6 +18,7 @@
 		155561B22A3658D6006B0F0E /* Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155561B12A3658D6006B0F0E /* Dict.swift */; };
 		155561B52A3667A4006B0F0E /* WaifuPicsNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 155561B42A3667A4006B0F0E /* WaifuPicsNetwork */; };
 		155561BA2A36FD27006B0F0E /* generate_waifu.sh in Resources */ = {isa = PBXBuildFile; fileRef = 155561B92A36FD27006B0F0E /* generate_waifu.sh */; };
+		1560D9312A477CDF00EE10CA /* NavigationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1560D9302A477CDF00EE10CA /* NavigationButtonView.swift */; };
 		157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157522FF2A35D1BA00AFE38E /* QuoteManager.swift */; };
 		157E57372A3F88FB003BA0C5 /* NavigationStackCustom in Frameworks */ = {isa = PBXBuildFile; productRef = 157E57362A3F88FB003BA0C5 /* NavigationStackCustom */; };
 		15A36C232A46F2BD00E958E9 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A36C222A46F2BD00E958E9 /* HeartView.swift */; };
@@ -49,6 +50,7 @@
 		155561B12A3658D6006B0F0E /* Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dict.swift; sourceTree = "<group>"; };
 		155561B32A366791006B0F0E /* WaifuPicsNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WaifuPicsNetwork; path = Modules/WaifuPicsNetwork; sourceTree = "<group>"; };
 		155561B92A36FD27006B0F0E /* generate_waifu.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_waifu.sh; sourceTree = SOURCE_ROOT; };
+		1560D9302A477CDF00EE10CA /* NavigationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonView.swift; sourceTree = "<group>"; };
 		157522FF2A35D1BA00AFE38E /* QuoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteManager.swift; sourceTree = "<group>"; };
 		157E57352A3F886F003BA0C5 /* NavigationStackCustom */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NavigationStackCustom; path = Modules/NavigationStackCustom; sourceTree = "<group>"; };
 		15A36C222A46F2BD00E958E9 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				150ED6DD2A421A6D00E98B56 /* TextView.swift */,
 				150ED6E12A421CD800E98B56 /* CategoryPickerView.swift */,
 				15BA224D2A45F18C00647A2E /* NavigationButtonsView.swift */,
+				1560D9302A477CDF00EE10CA /* NavigationButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				15F06BAB2A34D88B00A153E4 /* AniQuotesApp.swift in Sources */,
 				15F220392A3B910A00463383 /* AnyTransition.swift in Sources */,
 				157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */,
+				1560D9312A477CDF00EE10CA /* NavigationButtonView.swift in Sources */,
 				15A36C232A46F2BD00E958E9 /* HeartView.swift in Sources */,
 				1502C5712A45E8B80082613D /* QuoteListView.swift in Sources */,
 				150ED6DE2A421A6D00E98B56 /* TextView.swift in Sources */,
