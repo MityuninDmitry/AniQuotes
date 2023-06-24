@@ -22,7 +22,9 @@ struct QuoteCellView: View {
                     // показываем поверх такую же инфу, когда не в избранном. Но если поменяли на измбранное, то вьюха исчезает по transition
                     if !isFavorite && quote.isFavorite {
                         Text("\(index). \(quote.quote.anime): \(quote.quote.character)")
-                            .transition(.move(edge: .trailing).combined(with: .scale))
+                            .transition(.moveTrailingBottom)
+                            
+                            
                     }
                 }
                 

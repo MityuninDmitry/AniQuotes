@@ -18,17 +18,13 @@ class QuoteViewModel: ObservableObject, Identifiable, Hashable {
         didSet {
             if imageURL != nil {
                 self.load(url: URL(string: self.imageURL!)!)
-                print("IMAGE URL LOADED \(self.imageURL!)")
             }
             
         }
     }
+    @Published var image: UIImage?
     @Published var isFavorite: Bool = false
-    @Published var image: UIImage? {
-        didSet {
-            print("IMAGE LOADED")
-        }
-    }
+    
     
     static func == (lhs: QuoteViewModel, rhs: QuoteViewModel) -> Bool {
         return lhs.id == rhs.id
