@@ -54,7 +54,6 @@ class QuoteManager: ObservableObject {
         backgroundImage.fetchImage()
     }
     func fetchQuotes() {
-        print("FECTH QUOTES")
         switch searchType {
         case .AnimeTitle:
             fetchQuotesByAnimeTitle()
