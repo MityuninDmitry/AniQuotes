@@ -17,14 +17,15 @@ struct QuoteCellView: View {
     var body: some View {
             HStack {
                 ZStack {
-                    Text("\(index). \(quote.quote.anime): \(quote.quote.character)")
-                    
+                    Text("\(index). \(quote.quote.character) - \(quote.quote.quote)")
+                        .lineLimit(1)
+                        
+                        
                     // показываем поверх такую же инфу, когда не в избранном. Но если поменяли на измбранное, то вьюха исчезает по transition
                     if !isFavorite && quote.isFavorite {
-                        Text("\(index). \(quote.quote.anime): \(quote.quote.character)")
-                            .transition(.moveTrailingBottom)
-                            
-                            
+                        Text("\(index). \(quote.quote.character) - \(quote.quote.quote)")
+                            .lineLimit(1)
+                            .transition(.scale.combined(with: .moveTrailingBottom))
                     }
                 }
                 
@@ -33,6 +34,7 @@ struct QuoteCellView: View {
                 HeartView()
                     .environmentObject(quoteManager)
                     .environmentObject(quote)
+                    
             }
             .onChange(of: quote.isFavorite, perform: { newValue in
                 if newValue {
@@ -52,6 +54,6 @@ struct QuoteCellView_Previews: PreviewProvider {
     static var previews: some View {
         QuoteCellView(index: 1)
             .environmentObject(QuoteManager.shared)
-            .environmentObject(QuoteViewModel(quote: Quote(key: 0.2, anime: "FDf", character: "asdas", quote: "dfsdf", v: 0.1)))
+            .environmentObject(QuoteViewModel(quote: Quote(key: 0.2, anime: "FDf", character: "asdas", quote: "dfsdf sdkfjh skdjfh kjsdhf kjshdfkj hsdkjfh skjdf kjsh ksdjfn sdfn s,dnf ,sjdnf ,jsfn", v: 0.1)))
     }
 }

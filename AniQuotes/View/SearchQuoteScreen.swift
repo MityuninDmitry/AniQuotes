@@ -21,36 +21,53 @@ struct SearchQuoteScreen: View {
         }
     }
     var body: some View {
-        AppNavigationView {
-            VStack {
-                List {
-                    ForEach(Array(quoteManager.categories.enumerated()) , id: \.element) { index, item in
-                        AppNavigationViewNext(destination: QuoteListView().environmentObject(quoteManager)) {
-                            Text("\(index). \(item)")
-                        } actionOnTap: {
-                            //self.quoteManager.animeTitle = item // так выдает ошибку xCode
-                            self.textForSearching = item
-                        }
-                        
-                        
-                        
-                    }
-                }
-                .listStyle(.plain)
-                
-                
-                Spacer()
-                
-                CategoryPickerView()
-                    .environmentObject(quoteManager)
-            }
+        ZStack {
+            ImageView()
+                .opacity(0.5)
+                .environmentObject(quoteManager.backgroundImage)
             
-        }
-        .onAppear {
-            if quoteManager.categories.isEmpty {
-                quoteManager.fetchCategories()
+            AppNavigationView {
+                VStack {
+                    List {
+                        ForEach(Array(quoteManager.headers.enumerated()) , id: \.element) { index, item in
+                            AppNavigationViewNext(destination: QuoteListView(header: item).environmentObject(quoteManager)) {
+                                HStack {
+                                    Text("\(index). \(item)")
+                                    Spacer()
+                                }
+                                .contentShape(Rectangle())
+                                
+                            } actionOnTap: {
+                                //self.quoteManager.animeTitle = item // так выдает ошибку xCode
+                                self.textForSearching = item
+                            }
+                            .listRowBackground(Color.clear)
+                            
+                            
+                        }
+                    }
+                    .listStyle(.plain)
+                    .refreshable {
+                        quoteManager.refreshBackgroundImage()
+                    }
+                    
+                    
+                    
+                    
+                    Spacer()
+                    
+                    CategoryPickerView()
+                        .environmentObject(quoteManager)
+                }
+                
+            }
+            .onAppear {
+                if quoteManager.headers.isEmpty {
+                    quoteManager.fetchHeaders()
+                }
             }
         }
+        
         
         
     }

@@ -14,15 +14,7 @@ class QuoteViewModel: ObservableObject, Identifiable, Hashable {
     
     var id: UUID = UUID()
     var quote: Quote
-    var imageURL: String? = nil {
-        didSet {
-            if imageURL != nil {
-                self.load(url: URL(string: self.imageURL!)!)
-            }
-            
-        }
-    }
-    @Published var image: UIImage?
+    var backgroundImage: ImageViewModel = .init()
     @Published var isFavorite: Bool = false
     
     
@@ -36,35 +28,6 @@ class QuoteViewModel: ObservableObject, Identifiable, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
-    }
-    
-    func fetchImage() {
-        let randomCategory = [SwfCategory.neko, SwfCategory.waifu].randomElement()!
-        WaifuPictureAPI.getImageSource(swfCategory: randomCategory) { data, error in
-            if error != nil {
-                self.imageURL = "https://i.waifu.pics/HlZeFoe.png"
-                //self.load(url: URL(string: self.imageURL!)!)
-                return
-            }
-            
-            if data != nil {
-                self.imageURL = data!.url
-                
-            }
-            
-            
-        }
-    }
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
     
 }

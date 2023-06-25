@@ -1,20 +1,20 @@
 //
-//  QuoteImageView.swift
+//  ImageView.swift
 //  AniQuotes
 //
-//  Created by Dmitry Mityunin on 6/20/23.
+//  Created by Dmitry Mityunin on 6/25/23.
 //
 
 import SwiftUI
-import AnimeQuotesNetwork
 
 struct ImageView: View {
-    @EnvironmentObject var quote: QuoteViewModel
+    @EnvironmentObject var imageVM: ImageViewModel
+    
     var body: some View {
         VStack {
-            if quote.image != nil {
+            if imageVM.image != nil {
                 GeometryReader { reader in
-                    Image(uiImage: quote.image!)
+                    Image(uiImage: imageVM.image!)
                         .resizable()
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.top)
@@ -24,21 +24,21 @@ struct ImageView: View {
                 
             } else {
                 ProgressView()
-                    .onAppear {
-                        if quote.image == nil {
-                            quote.fetchImage()
-                        }
-                    }
+                    
+            }
+        }
+        .onAppear {
+            if imageVM.image == nil {
+                imageVM.fetchImage()
             }
         }
        
     }
 }
 
-struct QuoteImageView_Previews: PreviewProvider {
+struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         ImageView()
-            .environmentObject(QuoteViewModel(quote: Quote(key: 0.2, anime: "FDf", character: "asdas", quote: "dfsdf", v: 0.1)))
-        
+            .environmentObject(ImageViewModel())
     }
 }

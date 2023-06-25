@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1502C5712A45E8B80082613D /* QuoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502C5702A45E8B80082613D /* QuoteListView.swift */; };
 		150ED6DE2A421A6D00E98B56 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150ED6DD2A421A6D00E98B56 /* TextView.swift */; };
-		150ED6E02A421B9F00E98B56 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150ED6DF2A421B9F00E98B56 /* ImageView.swift */; };
 		150ED6E22A421CD800E98B56 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150ED6E12A421CD800E98B56 /* CategoryPickerView.swift */; };
 		15467F6A2A35CF05008B95E4 /* AnimeQuotesNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 15467F692A35CF05008B95E4 /* AnimeQuotesNetwork */; };
 		155561AC2A365063006B0F0E /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155561AB2A365063006B0F0E /* TabManager.swift */; };
@@ -19,6 +18,8 @@
 		155561B52A3667A4006B0F0E /* WaifuPicsNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 155561B42A3667A4006B0F0E /* WaifuPicsNetwork */; };
 		155561BA2A36FD27006B0F0E /* generate_waifu.sh in Resources */ = {isa = PBXBuildFile; fileRef = 155561B92A36FD27006B0F0E /* generate_waifu.sh */; };
 		1560D9312A477CDF00EE10CA /* NavigationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1560D9302A477CDF00EE10CA /* NavigationButtonView.swift */; };
+		1560D9332A48685E00EE10CA /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1560D9322A48685E00EE10CA /* ImageViewModel.swift */; };
+		1560D9352A48694B00EE10CA /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1560D9342A48694B00EE10CA /* ImageView.swift */; };
 		157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157522FF2A35D1BA00AFE38E /* QuoteManager.swift */; };
 		157E57372A3F88FB003BA0C5 /* NavigationStackCustom in Frameworks */ = {isa = PBXBuildFile; productRef = 157E57362A3F88FB003BA0C5 /* NavigationStackCustom */; };
 		15A36C232A46F2BD00E958E9 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A36C222A46F2BD00E958E9 /* HeartView.swift */; };
@@ -39,7 +40,6 @@
 /* Begin PBXFileReference section */
 		1502C5702A45E8B80082613D /* QuoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListView.swift; sourceTree = "<group>"; };
 		150ED6DD2A421A6D00E98B56 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		150ED6DF2A421B9F00E98B56 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		150ED6E12A421CD800E98B56 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		15467F622A34DD5F008B95E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		15467F662A34DDD4008B95E4 /* generate_animequotesnetwork.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_animequotesnetwork.sh; sourceTree = SOURCE_ROOT; };
@@ -51,6 +51,8 @@
 		155561B32A366791006B0F0E /* WaifuPicsNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WaifuPicsNetwork; path = Modules/WaifuPicsNetwork; sourceTree = "<group>"; };
 		155561B92A36FD27006B0F0E /* generate_waifu.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_waifu.sh; sourceTree = SOURCE_ROOT; };
 		1560D9302A477CDF00EE10CA /* NavigationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonView.swift; sourceTree = "<group>"; };
+		1560D9322A48685E00EE10CA /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		1560D9342A48694B00EE10CA /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		157522FF2A35D1BA00AFE38E /* QuoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteManager.swift; sourceTree = "<group>"; };
 		157E57352A3F886F003BA0C5 /* NavigationStackCustom */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NavigationStackCustom; path = Modules/NavigationStackCustom; sourceTree = "<group>"; };
 		15A36C222A46F2BD00E958E9 /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
@@ -97,9 +99,9 @@
 				15E22E702A44B84C008347B9 /* Extension */,
 				157522FF2A35D1BA00AFE38E /* QuoteManager.swift */,
 				155561AB2A365063006B0F0E /* TabManager.swift */,
-				155561B12A3658D6006B0F0E /* Dict.swift */,
 				15C788F02A38B01800145F06 /* QuoteViewModel.swift */,
-				15F220382A3B910A00463383 /* AnyTransition.swift */,
+				1560D9322A48685E00EE10CA /* ImageViewModel.swift */,
+				155561B12A3658D6006B0F0E /* Dict.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,7 +115,7 @@
 				15A36C242A4701E600E958E9 /* QuoteCellView.swift */,
 				15DF323C2A35DCD20004A114 /* QuoteView.swift */,
 				15A36C222A46F2BD00E958E9 /* HeartView.swift */,
-				150ED6DF2A421B9F00E98B56 /* ImageView.swift */,
+				1560D9342A48694B00EE10CA /* ImageView.swift */,
 				150ED6DD2A421A6D00E98B56 /* TextView.swift */,
 				150ED6E12A421CD800E98B56 /* CategoryPickerView.swift */,
 				15BA224D2A45F18C00647A2E /* NavigationButtonsView.swift */,
@@ -125,6 +127,7 @@
 		15E22E702A44B84C008347B9 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				15F220382A3B910A00463383 /* AnyTransition.swift */,
 				15E22E712A44B91F008347B9 /* RandomAccessCollection.swift */,
 			);
 			path = Extension;
@@ -265,12 +268,12 @@
 				15BA22502A4600D400647A2E /* SearchType.swift in Sources */,
 				15BA224E2A45F18C00647A2E /* NavigationButtonsView.swift in Sources */,
 				15F06BAD2A34D88B00A153E4 /* ContentView.swift in Sources */,
-				150ED6E02A421B9F00E98B56 /* ImageView.swift in Sources */,
 				15E22E722A44B91F008347B9 /* RandomAccessCollection.swift in Sources */,
 				15E22E752A44BE57008347B9 /* AnimeTitle.swift in Sources */,
 				15A36C252A4701E600E958E9 /* QuoteCellView.swift in Sources */,
 				15F06BAB2A34D88B00A153E4 /* AniQuotesApp.swift in Sources */,
 				15F220392A3B910A00463383 /* AnyTransition.swift in Sources */,
+				1560D9352A48694B00EE10CA /* ImageView.swift in Sources */,
 				157523002A35D1BA00AFE38E /* QuoteManager.swift in Sources */,
 				1560D9312A477CDF00EE10CA /* NavigationButtonView.swift in Sources */,
 				15A36C232A46F2BD00E958E9 /* HeartView.swift in Sources */,
@@ -279,6 +282,7 @@
 				155561AE2A365101006B0F0E /* SearchQuoteScreen.swift in Sources */,
 				155561B02A3651A5006B0F0E /* FavoriteQuotesScreen.swift in Sources */,
 				150ED6E22A421CD800E98B56 /* CategoryPickerView.swift in Sources */,
+				1560D9332A48685E00EE10CA /* ImageViewModel.swift in Sources */,
 				15DF323D2A35DCD20004A114 /* QuoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

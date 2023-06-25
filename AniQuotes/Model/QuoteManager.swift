@@ -12,17 +12,19 @@ import WaifuPicsNetwork
 class QuoteManager: ObservableObject {
     static var shared = QuoteManager()
     
+    
+    @Published var backgroundImage: ImageViewModel = .init()
     @Published var searchType: SearchType = .AnimeTitle {
         didSet {
-            categories = []
+            headers = []
             textForSearching = nil
-            fetchCategories()
+            fetchHeaders()
         }
     }
     @Published var quotes: [QuoteViewModel] = [] 
     @Published var favoriteQuotes: [QuoteViewModel] = []
     @Published var isLoading: Bool = false
-    @Published var categories: [String] = []
+    @Published var headers: [String] = []
     @Published var textForSearching: String?  {
         didSet {
             if oldValue != textForSearching {
@@ -32,7 +34,7 @@ class QuoteManager: ObservableObject {
                     isLoadedFully = false
                     fetchQuotes()
                 } else {
-                    fetchCategories()
+                    fetchHeaders()
                 }
             }
             
@@ -46,9 +48,13 @@ class QuoteManager: ObservableObject {
     private init() {
         quotes = .init()
         favoriteQuotes = .init()
-        
+    }
+    
+    func refreshBackgroundImage() {
+        backgroundImage.fetchImage()
     }
     func fetchQuotes() {
+        print("FECTH QUOTES")
         switch searchType {
         case .AnimeTitle:
             fetchQuotesByAnimeTitle()
@@ -56,7 +62,7 @@ class QuoteManager: ObservableObject {
             fetchQuotesByCharacterName()
         }
     }
-    func fetchCategories() {
+    func fetchHeaders() {
         switch searchType {
         case .AnimeTitle:
             fetchAnimeTitles()
@@ -68,10 +74,10 @@ class QuoteManager: ObservableObject {
         AnimeQuotesAPI.characterArray { data, error in
             if error != nil {
                 print(error)
-                self.categories = ["Naruto", "Ippo"]
+                self.headers = ["Naruto", "Ippo"]
             } else {
                 if data != nil {
-                    self.categories = data!
+                    self.headers = data!
                 }
             }
         }
@@ -111,10 +117,10 @@ class QuoteManager: ObservableObject {
         AnimeQuotesAPI.animeArray { data, error in
             if error != nil {
                 print(error)
-                self.categories = ["Naruto", "Ippo"]
+                self.headers = ["Naruto", "Ippo"]
             } else {
                 if data != nil {
-                    self.categories = data!
+                    self.headers = data!
                 }
             }
         }

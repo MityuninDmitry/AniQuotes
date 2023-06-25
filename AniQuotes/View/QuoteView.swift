@@ -14,7 +14,8 @@ struct QuoteView: View {
     var body: some View {
         ZStack {
             ImageView()
-                .environmentObject(quote)
+                .environmentObject(quote.backgroundImage)
+            
             VStack {
                 Spacer()
                 
